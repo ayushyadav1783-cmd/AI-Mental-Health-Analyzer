@@ -1,0 +1,1 @@
+# Ignore Python cache and virtual env__pycache__/*.pyc*.pyo*.pydenv/venv/.venv/# Ignore Streamlit and logs.streamlit/*.log# Ignore model weights and large filesmodels/*.safetensors*.bin*.pt*.h5*.pkl*.ckpt*.zip*.tar.gz# Ignore datasetsdata/datasets/# Ignore system files.DS_StoreThumbs.db
