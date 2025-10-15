@@ -119,12 +119,19 @@ EXPLANATIONS = {
 # ==========================
 from transformers import pipeline
 
-# Load lightweight emotion classifier (runs via Hugging Face backend, no torch)
-clf = pipeline(
-    "text-classification",
-    model="SamLowe/roberta-base-go_emotions",
-    top_k=None
-)
+# ==========================
+# Model Setup (Hosted Inference)
+# ==========================
+from huggingface_hub import InferenceClient
+
+# Use Hugging Face hosted inference API (no torch needed)
+client = InferenceClient(model="SamLowe/roberta-base-go_emotions")
+
+def analyze_text(text):
+    # Call the hosted model safely
+    result = client.text_classification(text)
+    # Normalize results to the same format as pipeline output
+    return [{"label": r["label"], "score": r["score"]} for r in result]
 # ==========================
 # Input + Analysis Section
 # ==========================
@@ -136,7 +143,7 @@ if st.button("🔍 Analyze Emotion"):
         st.warning("⚠️ Please enter some text before analyzing.")
     else:
         with st.spinner("Analyzing emotions with AI... 💫"):
-            outputs = clf(text)
+            outputs = analyze_text(text)
             if isinstance(outputs, list) and isinstance(outputs[0], list):
                 outputs = outputs[0]
 
