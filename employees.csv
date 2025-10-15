@@ -1,6 +1,0 @@
-id,name,age,salary,start_date,department
-1,Alice,25,50000,1/15/2020,HR
-2,Bob,,60000,3/10/2019,Finance
-3,,30,,7/1/2021,Finance
-4,David,45,80000,,HR
-5,Eva,,70000,11/20/2022,Finance
