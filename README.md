@@ -1,69 +1,47 @@
-## 🧠 AI Mental Health Emotion Analyzer
+# 🧠 AI Mental Health Text Analyzer  
 
-A Streamlit-powered web app that analyzes the **emotional tone of text** using a fine-tuned **RoBERTa emotion classification model** from Hugging Face.  
-Simply type how you’re feeling — the app identifies emotions like *joy, sadness, fear, love,* and more, with confidence scores and emojis for an intuitive user experience.  
+A **Streamlit web app** that uses **Hugging Face Transformers** to detect emotions and mental health tones from user text input in real-time.  
 
----
-
-### 🚀 Live Demo  
-🔗 **[Open the App on Streamlit Cloud](https://ai-mental-health-analyzer.streamlit.app)** *(replace with your actual app link once it’s deployed)*  
+✨ **Live Demo:** [AI Mental Health Analyzer on Streamlit](https://ai-mental-health-analyzer-gpd4fnlecxpcfanl7hcpig.streamlit.app/)  
 
 ---
 
-### 🧩 Features
-✅ Real-time emotion prediction  
-✅ Friendly UI with emojis & confidence levels  
-✅ Powered by Hugging Face Transformers  
-✅ Lightweight & fast — runs entirely in the cloud  
-✅ Secure Hugging Face token management with `st.secrets`  
+## 🚀 Features
+
+- 🎯 Emotion detection (Joy, Sadness, Fear, Anger, Surprise, etc.)  
+- 🧩 Powered by Transformer-based NLP models from Hugging Face  
+- 🎨 Modern UI with smooth animations and emoji-based feedback  
+- 🧱 Streamlit-powered — runs on web and local easily  
+- ☁️ Hugging Face API integration for secure inference  
 
 ---
 
-### 🖥️ Tech Stack
-- **Frontend/UI:** Streamlit  
-- **Model:** `SamLowe/roberta-base-go_emotions` (Hugging Face)  
-- **Backend:** Python  
-- **Libraries:**  
-  - `transformers`  
-  - `torch` *(optional / CPU mode supported)*  
-  - `streamlit`  
-  - `protobuf`, `accelerate`, `sentencepiece`  
+## 🧰 Tech Stack
+
+| Technology | Description |
+|-------------|-------------|
+| **Python 3.10+** | Programming language |
+| **Streamlit** | Web app framework |
+| **Transformers** | NLP models |
+| **Hugging Face Inference API** | Emotion model backend |
+| **Torch (PyTorch)** | Model runtime |
+| **HTML + CSS (Custom)** | For UI Styling |
 
 ---
 
-### ⚙️ Local Setup
-You can run this app locally in 3 simple steps:
+## ⚙️ Setup Instructions (Local)
 
 ```bash
-# 1️⃣ Clone the repo
+# 1️⃣ Clone the repository
 git clone https://github.com/ayushyadav1783-cmd/AI-Mental-Health-Analyzer.git
 cd AI-Mental-Health-Analyzer
 
 # 2️⃣ Install dependencies
 pip install -r requirements.txt
 
-# 3️⃣ Run the app
+# 3️⃣ Add your Hugging Face token in secrets.toml
+mkdir -p ~/.streamlit
+echo '[general]\nemail="your_email@domain.com"\nHF_TOKEN="your_huggingface_token"' > ~/.streamlit/secrets.toml
+
+# 4️⃣ Run the app
 streamlit run mental_health_app.py
-```
-
----
-
-### 🔐 Hugging Face Token Setup
-Create a `.streamlit/secrets.toml` file in your project directory:
-```toml
-HF_TOKEN = "your_huggingface_token_here"
-```
-
-You can generate your token from [Hugging Face settings → Access Tokens](https://huggingface.co/settings/tokens).  
-
----
-
-### 📸 Preview
-*(Add a screenshot of your running app here once deployed)*  
-
----
-
-### 🧑‍💻 Author
-**Ayush Yadav**  
-📍 Machine Learning Engineer | Data Science Enthusiast  
-🔗 [GitHub](https://github.com/ayushyadav1783-cmd)
