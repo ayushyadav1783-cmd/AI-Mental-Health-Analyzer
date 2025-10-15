@@ -1,6 +1,6 @@
 streamlit==1.39.0
-transformers==4.43.3
-torch==2.2.2
+transformers==4.44.2
+torch==2.0.1
 sentencepiece
-protobuf==4.25.3
-accelerate
+protobuf==3.20.3
+accelerate==0.30.1
