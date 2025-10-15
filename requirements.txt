@@ -1,0 +1,5 @@
+streamlit==1.39.0
+transformers==4.45.0
+torch==2.4.0
+sentencepiece
+protobuf==4.25.3
