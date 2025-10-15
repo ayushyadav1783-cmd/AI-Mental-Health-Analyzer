@@ -93,10 +93,12 @@ EXPLANATIONS = {
     "neutral":"You seem calm and balanced."
 }
 
-# ==========================
-# Public Hugging Face API (no token)
-# ==========================
-client = InferenceClient(model="SamLowe/roberta-base-go_emotions")
+from huggingface_hub import InferenceClient
+import os
+
+# Load the Hugging Face token from Streamlit Cloud secrets
+HF_TOKEN = os.getenv("HF_TOKEN")
+client = InferenceClient(model="SamLowe/roberta-base-go_emotions", token=HF_TOKEN)
 
 def analyze_text(text):
     """Use free public inference endpoint (no token needed)."""
