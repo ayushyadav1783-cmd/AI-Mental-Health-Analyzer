@@ -1,1 +1,39 @@
-# Ignore Python cache and virtual env__pycache__/*.pyc*.pyo*.pydenv/venv/.venv/# Ignore Streamlit and logs.streamlit/*.log# Ignore model weights and large filesmodels/*.safetensors*.bin*.pt*.h5*.pkl*.ckpt*.zip*.tar.gz# Ignore datasetsdata/datasets/# Ignore system files.DS_StoreThumbs.db
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Streamlit cache
+.streamlit/
+.stcache/
+
+# Model files and large artifacts
+models/
+*.safetensors
+*.pt
+*.bin
+
+# College notebooks and assignments
+*.ipynb
+*.html
+HW*
+1.*.ipynb
+2.*.ipynb
+3.*.ipynb
+4.*.ipynb
+
+# CSVs, datasets (if not required)
+*.csv
+*.xlsx
+
+# OS and IDE files
+.DS_Store
+.vscode/
+.idea/
+
+# Keep these essential project files
+!mental_health_app.py
+!AI_Powered_Mental_Health_Text_Analyzer.py
+!fix_streamlit_env.sh
+!.gitignore
