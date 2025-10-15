@@ -1,7 +1,6 @@
 streamlit==1.39.0
-transformers==4.41.2
-torch==2.0.0+cpu
---extra-index-url https://download.pytorch.org/whl/cpu
+transformers==4.37.2
 sentencepiece
-accelerate==0.29.3
 protobuf==3.20.3
+requests
+huggingface-hub==0.22.2

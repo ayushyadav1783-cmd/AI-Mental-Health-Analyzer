@@ -115,35 +115,15 @@ EXPLANATIONS = {
 }
 
 # ==========================
-# Model Setup
+# Model Setup (Lightweight)
 # ==========================
-import torch
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from transformers import pipeline
 
-# ==== Force full CPU-only execution ====
-os.environ["CUDA_VISIBLE_DEVICES"] = ""
-os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "0"
-torch.backends.mps.is_available = lambda: False
-torch.backends.mps.is_built = lambda: False
-torch.cuda.is_available = lambda: False
-
-# ==== Load model safely on CPU ====
-MODEL_NAME = "SamLowe/roberta-base-go_emotions"
-
-# Explicitly load tokenizer and model to CPU to prevent meta tensors
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_NAME,
-    torch_dtype=torch.float32,
-    device_map={"": "cpu"}
-).to("cpu")
-
-# Create pipeline on CPU
+# Load lightweight emotion classifier (runs via Hugging Face backend, no torch)
 clf = pipeline(
     "text-classification",
-    model=model,
-    tokenizer=tokenizer,
-    return_all_scores=True
+    model="SamLowe/roberta-base-go_emotions",
+    top_k=None
 )
 # ==========================
 # Input + Analysis Section
