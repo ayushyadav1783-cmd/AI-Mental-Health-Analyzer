@@ -1,29 +1,28 @@
 import streamlit as st
-from transformers import pipeline
+from huggingface_hub import InferenceClient
 
+# Load model using Hugging Face Inference API
 @st.cache_resource(show_spinner=False)
-def load_model():
-    # Use Hugging Face API with authentication token
-    return pipeline(
-        "text-classification",
+def load_client():
+    return InferenceClient(
         model="SamLowe/roberta-base-go_emotions",
-        use_auth_token=st.secrets["HF_TOKEN"]
+        token=st.secrets["HF_TOKEN"]
     )
 
-clf = load_model()
+client = load_client()
 
 def analyze_text(text):
-    """Analyze text using a public model with authentication."""
+    """Analyze text using the Hugging Face Inference API."""
     try:
-        result = clf(text)
-        return [{"label": r["label"], "score": r["score"]} for r in result]
+        response = client.text_classification(text)
+        return [{"label": r["label"], "score": r["score"]} for r in response]
     except Exception as e:
-        st.error(f"⚠️ Unexpected error: {e}")
+        st.error(f"⚠️ API error: {e}")
         return []
 
 
-# ---------- UI ----------
-st.set_page_config(page_title="AI Sentiment Analyzer", page_icon="🧠", layout="centered")
+# ---------- Streamlit UI ----------
+st.set_page_config(page_title="AI Mental Health Analyzer", page_icon="🧠", layout="centered")
 
 st.markdown("""
     <style>
@@ -55,4 +54,4 @@ if st.button("🔍 Analyze"):
                 emoji_map = {"POSITIVE": "😊", "NEGATIVE": "😔"}
                 st.success(f"**Emotion:** {label} {emoji_map.get(label, '🤖')}  \n**Confidence:** {confidence}%")
 
-st.markdown("<hr><center><small>Powered by 🤗 Transformers & Streamlit Cloud</small></center>", unsafe_allow_html=True)
+st.markdown("<hr><center><small>Powered by 🤗 Hugging Face Inference API & Streamlit Cloud</small></center>", unsafe_allow_html=True)
