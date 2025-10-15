@@ -3,17 +3,17 @@ from transformers import pipeline
 
 @st.cache_resource(show_spinner=False)
 def load_model():
-    # Use CPU only, lightweight and compatible with Streamlit Cloud
+    # Use Hugging Face API with authentication token
     return pipeline(
         "text-classification",
-        model="distilbert-base-uncased-finetuned-sst-2-english",
-        device=-1
+        model="SamLowe/roberta-base-go_emotions",
+        use_auth_token=st.secrets["HF_TOKEN"]
     )
 
 clf = load_model()
 
 def analyze_text(text):
-    """Analyze text using a public model without requiring authentication."""
+    """Analyze text using a public model with authentication."""
     try:
         result = clf(text)
         return [{"label": r["label"], "score": r["score"]} for r in result]
